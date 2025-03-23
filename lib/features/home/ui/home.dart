@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/features/home/bloc/home_bloc.dart';
+import 'package:grocery/features/home/ui/product_card_widget.dart';
 
-import '../../products/ui/cart.dart';
+import '../../carts/ui/cart.dart';
 import '../../wishlist/ui/wishlist.dart';
 
 class Home extends StatefulWidget {
@@ -13,13 +15,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final HomeBloc homeBloc = HomeBloc();
+
   @override
   void initState(){
     homeBloc.add(HomeInitialEvent());
     super.initState();
   }
-
-  final HomeBloc homeBloc = HomeBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,33 @@ class _HomeState extends State<Home> {
         else if(state is HomeNavigateToCartPageActionsState){
           Navigator.push(context, MaterialPageRoute(builder: (context)=> CartItems()));
         }
+        else if(state is ItemAddedToCartlistState){
+           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
+             child: Row(
+               children: [
+                 Icon(Icons.shopping_basket, color: Colors.yellow),
+                 SizedBox(width: 10,),
+                 Text(
+                   'Item added to the Cart',
+                 ),
+               ],
+             ),
+           )));
+        }
+        else if (state is ItemAddedToWishlistState){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
+            child: Row(
+              children: [
+                Icon(Icons.favorite, color: Colors.red),
+                SizedBox(width: 10,),
+                Text(
+                  'Item added to the Cart',
+                ),
+              ],
+            ),
+          ),
+          ));
+        }
       },
       builder: (context, state) {
         switch(state.runtimeType){
@@ -44,31 +73,42 @@ class _HomeState extends State<Home> {
             ));
 
           case HomeLoadedSuccessState:
+            final home_success_state = state as HomeLoadedSuccessState;
             return Scaffold(
               appBar: AppBar(
-                title: Text('Grocery App'),
+                title: Text('Fresh Fruits',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'Raleway', // Stylish Font
+                    color: Colors.white,
+                  ),
+                ),
                 actions: [
                   IconButton(onPressed: () {
                     homeBloc.add(HomeCartButtonNavigatedEvent());
                   },
-                      icon: Icon(Icons.shopping_basket)),
+                      icon: Icon(Icons.shopping_basket, color: Colors.yellow,)),
                   IconButton(
                       onPressed: () {
                         homeBloc.add(HomeWishlistButtonNavigatedEvent());
                       },
-                      icon: Icon(Icons.favorite_border_outlined)),
+                      icon: Icon(Icons.favorite, color: Colors.yellow,)),
                 ],
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Color(0xFF316300),
               ),
-              body: Center(
-                child: Text('Grocery Items here'),
-              ),
+              body: Container(color: Color(0xC2558C00) ,
+                child: ListView.builder( itemCount: home_success_state.products.length,
+                    itemBuilder: (context, index){
+                  return ProductTileWidget(homeBloc: homeBloc,productDataModel: home_success_state.products[index]);
+                }),
+              )
             );
 
           case HomeErrorState:
             return Scaffold(
               body: Center(
-                child: Text('Network Error'),
+                child: Text('Network Error Occured'),
               ),
             );
 

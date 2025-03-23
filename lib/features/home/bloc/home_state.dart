@@ -19,10 +19,11 @@ class HomeLoadedSuccessState extends HomeState{
 
 class HomeErrorState extends HomeState{}
 
-
 class HomeNavigateToWishlistPageActionsState extends HomeStateActions{}
 
 class HomeNavigateToCartPageActionsState extends HomeStateActions{}
 
+class ItemAddedToWishlistState extends HomeStateActions{}
 
+class ItemAddedToCartlistState extends HomeStateActions{}
 
