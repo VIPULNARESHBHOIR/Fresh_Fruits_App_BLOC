@@ -1,4 +1,4 @@
-# grocery
+# Fresh Fruits Application
 
 A new Flutter project.
 
