@@ -18,6 +18,11 @@ class CartTileWidget extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xD7009CFF), Color(0xFFC8E9FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey.shade400, width: 1),
         color: Colors.white,
@@ -49,45 +54,51 @@ class CartTileWidget extends StatelessWidget {
           Text(
             productDataModel.name,
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Raleway', // Stylish Font
               color: Colors.black87,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 4),
           Text(
             productDataModel.description,
             style: TextStyle(
               fontSize: 14,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.4,
+              fontFamily: 'Lato',
               color: Colors.grey[700],
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "\$${productDataModel.price.toStringAsFixed(2)}",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Raleway',
                   color: Colors.green.shade700,
                 ),
               ),
               Row(
                 children: [
+
                   InkWell(
                     onTap: () {
-                      // Add to favorites logic
+
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.red.shade50,
+                        color: Colors.blue[100],
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.favorite_border, color: Colors.red),
+                      child: Icon(Icons.shopping_cart, color: Colors.blue),
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -100,10 +111,10 @@ class CartTileWidget extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
+                        color: Colors.red[100],
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.shopping_basket, color: Colors.blue),
+                      child: Icon(Icons.delete, color: Colors.red),
                     ),
                   ),
                 ],

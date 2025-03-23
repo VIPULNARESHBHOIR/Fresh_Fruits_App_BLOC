@@ -20,6 +20,11 @@ class WishlistTileWidget extends StatelessWidget {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xD7FF4147), Color(0xFFFFEAEA)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey.shade400, width: 1),
         color: Colors.white,
@@ -51,36 +56,53 @@ class WishlistTileWidget extends StatelessWidget {
           Text(
             productDataModel.name,
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat', // Change to a better font
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Raleway', // Stylish Font
               color: Colors.black87,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 4),
           Text(
             productDataModel.description,
             style: TextStyle(
               fontSize: 14,
-              fontFamily: 'Poppins', // Add a clean font
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.4,
+              fontFamily: 'Lato',
               color: Colors.grey[700],
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "\$${productDataModel.price.toStringAsFixed(2)}",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Raleway',
                   color: Colors.green.shade700,
                 ),
               ),
               Row(
                 children: [
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    borderRadius: BorderRadius.circular(30),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.brown[100],
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.favorite, color: Colors.red),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
                   InkWell(
                     onTap: () {
                       wishlistBloc.add(WishlistItemRemoveEvent(
@@ -90,25 +112,10 @@ class WishlistTileWidget extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.red.shade50,
+                        color: Colors.red,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.favorite_border, color: Colors.red),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  InkWell(
-                    onTap: () {
-                      // Add to cart logic
-                    },
-                    borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(Icons.shopping_basket, color: Colors.blue),
+                      child: Icon(Icons.delete, color: Colors.black38),
                     ),
                   ),
                 ],

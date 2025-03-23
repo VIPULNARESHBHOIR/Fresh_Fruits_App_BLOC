@@ -40,7 +40,8 @@ class _HomeState extends State<Home> {
            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
              child: Row(
                children: [
-                 Icon(Icons.shopping_basket, color: Colors.yellow),
+                 Container(
+                     child: Icon(Icons.shopping_cart, color: Colors.blue)),
                  SizedBox(width: 10,),
                  Text(
                    'Item added to the Cart',
@@ -88,12 +89,12 @@ class _HomeState extends State<Home> {
                   IconButton(onPressed: () {
                     homeBloc.add(HomeCartButtonNavigatedEvent());
                   },
-                      icon: Icon(Icons.shopping_basket, color: Colors.yellow,)),
+                      icon: Icon(Icons.shopping_cart, color: Colors.blue,)),
                   IconButton(
                       onPressed: () {
                         homeBloc.add(HomeWishlistButtonNavigatedEvent());
                       },
-                      icon: Icon(Icons.favorite, color: Colors.yellow,)),
+                      icon: Icon(Icons.favorite, color: Colors.red,)),
                 ],
                 backgroundColor: Color(0xFF316300),
               ),

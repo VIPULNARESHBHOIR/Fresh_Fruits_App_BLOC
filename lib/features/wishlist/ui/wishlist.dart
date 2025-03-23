@@ -49,7 +49,7 @@ class _WishlistState extends State<Wishlist> {
 
             case WishlistLoadedState:
               final successState = state as WishlistLoadedState;
-              return Container(color: Color(0xC2558C00),
+              return successState.wishlist_items.isNotEmpty? Container(color: Color(0xC2558C00),
                 child: ListView.builder(
                     itemCount: successState.wishlist_items.length,
                     itemBuilder: (context, index) {
@@ -57,6 +57,36 @@ class _WishlistState extends State<Wishlist> {
                           wishlistBloc: wishlistBloc,
                           productDataModel: successState.wishlist_items[index]);
                     }),
+              ):
+              Container(
+                color: Color(0xC2558C00),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.favorite_border_outlined,
+                        size: 100,
+                        color: Colors.red,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Opps No Fruits!',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Raleway', // Stylish Font
+                          color: Colors.black54,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Start adding fruits to your favorite.',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
               );
 
             default:

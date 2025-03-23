@@ -51,15 +51,51 @@ class _CartItemsState extends State<CartItems> {
 
             case CartsLoadedState:
               final successState = state as CartsLoadedState;
-              return Container(color: Color(0xC2558C00),
+              return successState.cart_Items.isNotEmpty
+                  ? Container(
+                color: Color(0xC2558C00),
                 child: ListView.builder(
-                    itemCount: successState.cart_Items.length,
-                    itemBuilder: (context, index) {
-                      return CartTileWidget(
-                          cartBloc: cartBloc,
-                          productDataModel: successState.cart_Items[index]);
-                    }),
-              );
+                  itemCount: successState.cart_Items.length,
+                  itemBuilder: (context, index) {
+                    return CartTileWidget(
+                      cartBloc: cartBloc,
+                      productDataModel: successState.cart_Items[index],
+                    );
+                  },
+                ),
+              )
+                  : Container(
+                color: Color(0xC2558C00),
+                    child: Center(
+                                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 100,
+                        color: Colors.blue,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Your Cart is Empty!',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Raleway', // Stylish Font
+                          color: Colors.black54,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Start shopping and add fruits to your cart.',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ],
+                                    ),
+                                  ),
+                  );
+
+
 
             default:
               return SizedBox();

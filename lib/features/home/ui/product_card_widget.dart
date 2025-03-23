@@ -8,11 +8,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../bloc/home_bloc.dart';
 import '../models/data_models.dart';
 
-class ProductTileWidget extends StatelessWidget {
+class ProductTileWidget extends StatefulWidget {
   final ProductDataModel productDataModel;
   final HomeBloc homeBloc;
   const ProductTileWidget(
       {super.key, required this.productDataModel, required this.homeBloc});
+
+  @override
+  State<ProductTileWidget> createState() => _ProductTileWidgetState();
+}
+
+class _ProductTileWidgetState extends State<ProductTileWidget> {
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +55,14 @@ class ProductTileWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(productDataModel.imageurl),
+                  image: NetworkImage(widget.productDataModel.imageurl),
                 ),
               ),
             ),
           ),
           const SizedBox(height: 14),
           Text(
-            productDataModel.name,
+            widget.productDataModel.name,
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600,
@@ -66,7 +72,7 @@ class ProductTileWidget extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            productDataModel.description,
+            widget.productDataModel.description,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -80,7 +86,7 @@ class ProductTileWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "\$${productDataModel.price.toStringAsFixed(2)}",
+                "\$${widget.productDataModel.price.toStringAsFixed(2)}",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -92,8 +98,8 @@ class ProductTileWidget extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      homeBloc.add(HomeProductWishlistButtonClickedEvent(
-                          product: productDataModel));
+                      widget.homeBloc.add(HomeProductWishlistButtonClickedEvent(
+                          product: widget.productDataModel));
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
@@ -114,8 +120,8 @@ class ProductTileWidget extends StatelessWidget {
                   const SizedBox(width: 12),
                   InkWell(
                     onTap: () {
-                      homeBloc.add(HomeProductCartButtonClickedEvent(
-                          product: productDataModel));
+                      widget.homeBloc.add(HomeProductCartButtonClickedEvent(
+                          product: widget.productDataModel));
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
@@ -130,7 +136,7 @@ class ProductTileWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Icon(Icons.shopping_basket_outlined, color: Colors.blue),
+                      child: Icon(Icons.shopping_cart_outlined, color: Colors.blue ),
                     ),
                   ),
                 ],
