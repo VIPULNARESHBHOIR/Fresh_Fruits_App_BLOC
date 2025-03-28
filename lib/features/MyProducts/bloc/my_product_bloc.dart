@@ -20,10 +20,9 @@ class MyProductBloc extends Bloc<MyProductEvent, MyProductState> {
   FutureOr<void> bottomScrollHitEvent(
       BottomScrollHitEvent event, Emitter<MyProductState> emit) async {
     const String baseUrl = "https://dummyjson.com/products";
-
+    print("----------------------------------------------------limit=${event.limit}&skip=${event.skip}--------------------------------------------");
     try {
-      emit(MyProductLoadingState()); // Show loading state before fetching data
-
+      // Don't emit a loading state, just add new data silently
       final response = await http.get(
           Uri.parse("$baseUrl?limit=${event.limit}&skip=${event.skip}"));
 
@@ -33,9 +32,10 @@ class MyProductBloc extends Bloc<MyProductEvent, MyProductState> {
             .map((json) => Product.fromJson(json))
             .toList();
 
-        products.addAll(newProducts);  // Append new products
+        products.addAll(newProducts); // Append new products
 
-        emit(MyProductLoadedState(products: List.from(products))); // Emit new state
+        // Emit new state without resetting the screen
+        emit(MyProductLoadedState(products: List.from(products)));
       } else {
         emit(LoadingFailed());
       }
@@ -43,4 +43,5 @@ class MyProductBloc extends Bloc<MyProductEvent, MyProductState> {
       emit(LoadingFailed());
     }
   }
+
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/Data/myproducts.dart';
 import 'package:grocery/features/MyProducts/bloc/my_product_bloc.dart';
-import '../../../Data/myproducts.dart';
+import 'package:grocery/features/MyProducts/ui/myProduct_card_widget.dart';
+
 
 class PaginationScreen extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class _PaginationScreenState extends State<PaginationScreen> {
 
   // final ApiService apiService = ApiService();
   int page = 0;
-  final int limit = 16;
+  final int limit = 5;
   bool isLoading = false;
   late ScrollController _scrollController;
 
@@ -79,35 +81,39 @@ class _PaginationScreenState extends State<PaginationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("MyProducts")),
+      backgroundColor:  Color(0xDB003D59),
+      appBar: AppBar(title: Text("MyProducts",
+      style: TextStyle(
+         color: Colors.white,
+      ),),
+        backgroundColor:  Color(0xDB002130),),
       body: BlocBuilder<MyProductBloc, MyProductState>(
-        bloc: myProductBloc,
-        builder: (context, state) {
-          if (state is MyProductLoadingState) {
-            return Center(child: CircularProgressIndicator());
-          }
+    bloc: myProductBloc,
+    builder: (context, state) {
+      if (state is MyProductLoadedState) {
+        final final_state = state as MyProductLoadedState;
+        return ListView.builder(
+          controller: _scrollController,
+          itemCount: state.products.length + 1, // Add one for loading indicator
+          itemBuilder: (context, index) {
+            if (index < state.products.length) {
+              return ProductTileWidget(product: final_state.products[index]);
+            } else {
+              // Show a loading indicator only at the bottom
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        );
+      }
 
-          else if (state is MyProductLoadedState) {
-            return ListView.builder(
-              controller: _scrollController,
-              itemCount: state.products.length + 1, // Add one for loading indicator
-              itemBuilder: (context, index) {
-                if (index < state.products.length) {
-                  return ListTile(
-                    leading: Image.network(state.products[index].thumbnail,
-                        width: 50, height: 50),
-                    title: Text(state.products[index].title),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            );
-          }
+      if (state is MyProductLoadingState) {
+        return Center(child: CircularProgressIndicator());
+      }
 
-          return Center(child: Text("No products available"));
-        },
-      ),
+      return Center(child: CircularProgressIndicator());
+    },
+    ),
+
 
     );
   }
