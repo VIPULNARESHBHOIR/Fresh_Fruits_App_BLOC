@@ -102,7 +102,7 @@ class _PaginationScreenState extends State<PaginationScreen> {
           letterSpacing: 0.4,
         ),),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 0, 54, 23), // Button background color
+        backgroundColor: Color.fromARGB(255, 0, 110, 221), // Button background color
         foregroundColor: Colors.white, // Text color
         shape: RoundedRectangleBorder(
           borderRadius:
@@ -110,7 +110,8 @@ class _PaginationScreenState extends State<PaginationScreen> {
         ),
         elevation: 5, // Shadow effect
       ),
-    ),],
+    ),
+          SizedBox(width: 10,)],
         backgroundColor:  Color(0xDB002130),),
 
       body: BlocBuilder<MyProductBloc, MyProductState>(
