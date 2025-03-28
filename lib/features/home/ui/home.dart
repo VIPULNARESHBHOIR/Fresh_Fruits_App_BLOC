@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/features/home/bloc/home_bloc.dart';
 import 'package:grocery/features/home/ui/product_card_widget.dart';
+import 'package:grocery/features/login/login.dart';
 
 import '../../carts/ui/cart.dart';
 import '../../wishlist/ui/wishlist.dart';
@@ -86,6 +87,11 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 actions: [
+                  ElevatedButton(onPressed: ()
+                  {
+                    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => LoginScreen()));
+                  }, child: Text('Logout'),
+                  ),
                   IconButton(onPressed: () {
                     homeBloc.add(HomeCartButtonNavigatedEvent());
                   },

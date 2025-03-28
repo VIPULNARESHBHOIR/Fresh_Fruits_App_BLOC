@@ -43,7 +43,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       }
       else{
-        print('No response from API');
+        emit(LoginFailed());
       }
 
     }

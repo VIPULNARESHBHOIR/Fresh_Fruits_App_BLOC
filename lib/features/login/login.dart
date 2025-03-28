@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           listener: (context, state) {
             if (state is LoginSuccessful) {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Home()));
             } else if (state is LoginFailed){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
                 child: Row(
