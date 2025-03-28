@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/features/MyProducts/ui/productsView.dart';
 import 'package:grocery/features/login/bloc/login_bloc.dart';
 
 import '../home/ui/home.dart';
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           listener: (context, state) {
             if (state is LoginSuccessful) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Home()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> PaginationScreen()));
             } else if (state is LoginFailed){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Color.fromARGB(255, 0, 54, 23),

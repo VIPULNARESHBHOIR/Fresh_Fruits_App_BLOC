@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF316300),
       ),
-      home: PaginationScreen(),
+      home: LoginScreen(),
     );
   }
 }

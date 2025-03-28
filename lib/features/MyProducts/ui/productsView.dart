@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/Data/myproducts.dart';
 import 'package:grocery/features/MyProducts/bloc/my_product_bloc.dart';
 import 'package:grocery/features/MyProducts/ui/myProduct_card_widget.dart';
+import 'package:grocery/features/login/login.dart';
 
 
 class PaginationScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _PaginationScreenState extends State<PaginationScreen> {
 
   // final ApiService apiService = ApiService();
   int page = 0;
-  final int limit = 5;
+  final int limit = 3;
   bool isLoading = false;
   late ScrollController _scrollController;
 
@@ -86,7 +87,32 @@ class _PaginationScreenState extends State<PaginationScreen> {
       style: TextStyle(
          color: Colors.white,
       ),),
+          actions: [
+          ElevatedButton(
+          onPressed: () {
+    Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+    builder: (context) => LoginScreen()));
+    },
+      child: Text('Logout',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          letterSpacing: 0.4,
+        ),),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 0, 54, 23), // Button background color
+        foregroundColor: Colors.white, // Text color
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(8), // Rounded corners
+        ),
+        elevation: 5, // Shadow effect
+      ),
+    ),],
         backgroundColor:  Color(0xDB002130),),
+
       body: BlocBuilder<MyProductBloc, MyProductState>(
     bloc: myProductBloc,
     builder: (context, state) {
