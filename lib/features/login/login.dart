@@ -35,7 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is LoginSuccessful) {
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Home()));
             } else if (state is LoginFailed){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Color.fromARGB(255, 0, 54, 23),
+                content: Center(
                 child: Row(
                   children: [
                     Icon(Icons.close, color: Colors.red, size: 50,),
@@ -86,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Border when not focused
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    color: Color.fromARGB(255, 135, 243, 33),
                                     width: 1),
                               ),
                             ),
@@ -117,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Border when not focused
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    color: Color.fromARGB(255, 135, 243, 33),
                                     width: 1),
                               ),
                             ),

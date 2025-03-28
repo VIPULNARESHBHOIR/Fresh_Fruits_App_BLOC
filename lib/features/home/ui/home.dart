@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final HomeBloc homeBloc = HomeBloc();
 
   @override
-  void initState(){
+  void initState() {
     homeBloc.add(HomeInitialEvent());
     super.initState();
   }
@@ -31,86 +31,126 @@ class _HomeState extends State<Home> {
       listenWhen: (previous, current) => current is HomeStateActions,
       buildWhen: (previous, current) => current is! HomeStateActions,
       listener: (context, state) {
-        if(state is HomeNavigateToWishlistPageActionsState){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> Wishlist()));
-        }
-        else if(state is HomeNavigateToCartPageActionsState){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> CartItems()));
-        }
-        else if(state is ItemAddedToCartlistState){
-           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
-             child: Row(
-               children: [
-                 Container(
-                     child: Icon(Icons.shopping_cart, color: Colors.blue)),
-                 SizedBox(width: 10,),
-                 Text(
-                   'Item added to the Cart',
-                 ),
-               ],
-             ),
-           )));
-        }
-        else if (state is ItemAddedToWishlistState){
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(
+        if (state is HomeNavigateToWishlistPageActionsState) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Wishlist()));
+        } else if (state is HomeNavigateToCartPageActionsState) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CartItems()));
+        } else if (state is ItemAddedToCartlistState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Color.fromARGB(255, 0, 54, 23),
+              content: Center(
             child: Row(
               children: [
-                Icon(Icons.favorite, color: Colors.red),
-                SizedBox(width: 10,),
+                Container(child: Icon(Icons.shopping_cart, color: Colors.blue)),
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
                   'Item added to the Cart',
                 ),
               ],
             ),
-          ),
+          )));
+        } else if (state is ItemAddedToWishlistState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Color.fromARGB(255, 0, 54, 23),
+            content: Center(
+              child: Row(
+                children: [
+                  Icon(Icons.favorite, color: Colors.red),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Item added to the Favorist',
+                  ),
+                ],
+              ),
+            ),
           ));
         }
       },
       builder: (context, state) {
-        switch(state.runtimeType){
+        switch (state.runtimeType) {
           case HomeLoadingState:
-            return Scaffold( body:
-            Center(
+            return Scaffold(
+                body: Center(
               child: CircularProgressIndicator(),
             ));
 
           case HomeLoadedSuccessState:
             final home_success_state = state as HomeLoadedSuccessState;
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Fresh Fruits',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'Raleway', // Stylish Font
-                    color: Colors.white,
+                appBar: AppBar(
+                  title: Text(
+                    'Fresh Fruits',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Raleway', // Stylish Font
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                actions: [
-                  ElevatedButton(onPressed: ()
-                  {
-                    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => LoginScreen()));
-                  }, child: Text('Logout'),
-                  ),
-                  IconButton(onPressed: () {
-                    homeBloc.add(HomeCartButtonNavigatedEvent());
-                  },
-                      icon: Icon(Icons.shopping_cart, color: Colors.blue,)),
-                  IconButton(
+                  actions: [
+                    ElevatedButton(
                       onPressed: () {
-                        homeBloc.add(HomeWishlistButtonNavigatedEvent());
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
                       },
-                      icon: Icon(Icons.favorite, color: Colors.red,)),
-                ],
-                backgroundColor: Color(0xFF316300),
-              ),
-              body: Container(color: Color(0xC2558C00) ,
-                child: ListView.builder( itemCount: home_success_state.products.length,
-                    itemBuilder: (context, index){
-                  return ProductTileWidget(homeBloc: homeBloc,productDataModel: home_success_state.products[index]);
-                }),
-              )
-            );
+                      child: Text('Logout',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        letterSpacing: 0.4,
+                      ),),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 0, 54, 23), // Button background color
+                        foregroundColor: Colors.white, // Text color
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(8), // Rounded corners
+                        ),
+                        elevation: 5, // Shadow effect
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          homeBloc.add(HomeCartButtonNavigatedEvent());
+                        },
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          color: Colors.blue,
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          homeBloc.add(HomeWishlistButtonNavigatedEvent());
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        )),
+                  ],
+                  backgroundColor: Color(0xFF316300),
+                ),
+                body: Container(
+                  color: Color(0xC2558C00),
+                  child:
+
+                      ListView.builder(
+                          itemCount: home_success_state.products.length,
+                          itemBuilder: (context, index) {
+                            return ProductTileWidget(
+                                homeBloc: homeBloc,
+                                productDataModel:
+                                    home_success_state.products[index]);
+                          }),
+
+
+                ));
 
           case HomeErrorState:
             return Scaffold(
@@ -120,11 +160,9 @@ class _HomeState extends State<Home> {
             );
 
           default:
-            return SizedBox(
-            );
+            return SizedBox();
             break;
         }
-
       },
     );
   }

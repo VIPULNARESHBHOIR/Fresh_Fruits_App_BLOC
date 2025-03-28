@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/features/home/ui/home.dart';
 
+// import 'features/Trial/listview.dart';
+import 'features/MyProducts/ui/productsView.dart';
 import 'features/login/login.dart';
 
 void main() {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF316300),
       ),
-      home: LoginScreen(),
+      home: PaginationScreen(),
     );
   }
 }
