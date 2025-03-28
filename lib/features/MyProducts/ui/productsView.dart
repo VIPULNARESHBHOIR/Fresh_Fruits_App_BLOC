@@ -82,44 +82,33 @@ class _PaginationScreenState extends State<PaginationScreen> {
       appBar: AppBar(title: Text("MyProducts")),
       body: BlocBuilder<MyProductBloc, MyProductState>(
         bloc: myProductBloc,
-        buildWhen: (previous, current) => current is MyProductState,
-
         builder: (context, state) {
-          switch(state.runtimeType){
-            case MyProductLoadingState:
-              return Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ));
-
-            case MyProductLoadedState:
-              return Scaffold(
-                // appBar: AppBar(title: Text("MyProducts")),
-                body: ListView.builder(
-                  controller: _scrollController, // Attach the scroll controller
-                  itemCount: products.length + (isLoading ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    if (index < products.length) {
-                      return ListTile(
-                        leading: Image.network(products[index].thumbnail, width: 50, height: 50),
-                        title: Text(products[index].title),
-                      );
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  },
-                ),
-              );
-
-            case LoadingFailed:
-              return Container();
-
-            default:
-              return Container();
+          if (state is MyProductLoadingState) {
+            return Center(child: CircularProgressIndicator());
           }
 
+          else if (state is MyProductLoadedState) {
+            return ListView.builder(
+              controller: _scrollController,
+              itemCount: state.products.length + 1, // Add one for loading indicator
+              itemBuilder: (context, index) {
+                if (index < state.products.length) {
+                  return ListTile(
+                    leading: Image.network(state.products[index].thumbnail,
+                        width: 50, height: 50),
+                    title: Text(state.products[index].title),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            );
+          }
+
+          return Center(child: Text("No products available"));
         },
       ),
+
     );
   }
 }
