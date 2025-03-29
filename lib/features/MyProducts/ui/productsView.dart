@@ -83,36 +83,14 @@ class _PaginationScreenState extends State<PaginationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Color(0xDB003D59),
-      appBar: AppBar(title: Text("MyProducts",
+      appBar: AppBar(
+        title: Text("MyProducts",
       style: TextStyle(
          color: Colors.white,
       ),),
-          actions: [
-          ElevatedButton(
-          onPressed: () {
-    Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-    builder: (context) => LoginScreen()));
-    },
-      child: Text('Logout',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-          letterSpacing: 0.4,
-        ),),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 0, 110, 221), // Button background color
-        foregroundColor: Colors.white, // Text color
-        shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(8), // Rounded corners
-        ),
-        elevation: 5, // Shadow effect
+        backgroundColor:  Color(0xDB003D59),
+        foregroundColor: Colors.white,
       ),
-    ),
-          SizedBox(width: 10,)],
-        backgroundColor:  Color(0xDB002130),),
 
       body: BlocBuilder<MyProductBloc, MyProductState>(
     bloc: myProductBloc,

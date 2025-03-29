@@ -94,29 +94,6 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   actions: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
-                      },
-                      child: Text('Logout',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        letterSpacing: 0.4,
-                      ),),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 0, 54, 23), // Button background color
-                        foregroundColor: Colors.white, // Text color
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(8), // Rounded corners
-                        ),
-                        elevation: 5, // Shadow effect
-                      ),
-                    ),
                     IconButton(
                         onPressed: () {
                           homeBloc.add(HomeCartButtonNavigatedEvent());
@@ -135,6 +112,7 @@ class _HomeState extends State<Home> {
                         )),
                   ],
                   backgroundColor: Color(0xFF316300),
+                  foregroundColor: Colors.white,
                 ),
                 body: Container(
                   color: Color(0xC2558C00),
