@@ -28,7 +28,7 @@ class MyProductBloc extends Bloc<MyProductEvent, MyProductState> {
         print(response.body);
         final data = jsonDecode(response.body);
         List<Product> newProducts = (data['products'] as List)
-            .map((json) => Product.fromJson(json))
+            .map((e) => Product.fromJson(e))
             .toList();
 
         products.addAll(newProducts); // Append new products
