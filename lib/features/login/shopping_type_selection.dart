@@ -72,97 +72,95 @@ class ShoppingType extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: SizedBox(
-                    width: 280,
-                    height: 80,
-                    child: ElevatedButton(
-            
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> PaginationScreen()));
-                      },
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/cart_2312969.png',
-                                width: 40, height: 40),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Buy Products',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  letterSpacing: 0.4,
-                                  fontFamily: 'Raleway'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)
-                        ),
-                        elevation: 8,
-                        backgroundColor: Color(0xDB003D59),
-                        alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: SizedBox(
+                  width: 280,
+                  height: 80,
+                  child: ElevatedButton(
+
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> PaginationScreen()));
+                    },
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/cart_2312969.png',
+                              width: 40, height: 40),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Buy Products',
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                                letterSpacing: 0.4,
+                                fontFamily: 'Raleway'),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ),
-            
-                SizedBox(
-            
-                  height: 15,
-                ),
-                Center(
-                  child: SizedBox(
-                    width: 280,
-                    height: 80,
-                    child: ElevatedButton(
-            
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
-                      },
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/fruits_11615356.png',
-                                width: 40, height: 40),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Buy Fruits',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  letterSpacing: 0.4,
-                                  fontFamily: 'Raleway'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)
-                        ),
-                        elevation: 8,
-                        backgroundColor: Color.fromARGB(255, 0, 54, 23),
-                        alignment: Alignment.center,
                       ),
+                      elevation: 8,
+                      backgroundColor: Color(0xDB003D59),
+                      alignment: Alignment.center,
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+
+              SizedBox(
+
+                height: 15,
+              ),
+              Center(
+                child: SizedBox(
+                  width: 280,
+                  height: 80,
+                  child: ElevatedButton(
+
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
+                    },
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/fruits_11615356.png',
+                              width: 40, height: 40),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Buy Fruits',
+                            style: TextStyle(
+                                fontSize: 25,
+                                color: Colors.white,
+                                letterSpacing: 0.4,
+                                fontFamily: 'Raleway'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      elevation: 8,
+                      backgroundColor: Color.fromARGB(255, 0, 54, 23),
+                      alignment: Alignment.center,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
         ));
   }
