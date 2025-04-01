@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../Data/myproducts.dart';
 import '../data_models/ProductDataModel.dart';
 
 part 'my_product_event.dart';
@@ -27,6 +25,7 @@ class MyProductBloc extends Bloc<MyProductEvent, MyProductState> {
           Uri.parse("$baseUrl?limit=${event.limit}&skip=${event.skip}"));
 
       if (response.statusCode == 200) {
+        print(response.body);
         final data = jsonDecode(response.body);
         List<Product> newProducts = (data['products'] as List)
             .map((json) => Product.fromJson(json))

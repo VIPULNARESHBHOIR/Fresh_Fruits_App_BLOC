@@ -31,6 +31,7 @@ class _WishlistState extends State<Wishlist> {
             color: Colors.white,
           ),),
         backgroundColor: Color(0xFF316300),
+        foregroundColor: Colors.white,
       ),
       body: BlocConsumer<WishlistBloc, WishlistState>(
         bloc: wishlistBloc,
