@@ -59,114 +59,116 @@ class _LoginScreenState extends State<LoginScreen> {
               return Center(
                   child: Container(
                       width: 300,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Color.fromARGB(255, 135, 243, 33),
-                              child: Icon(Icons.person, color: Colors.white),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TextField(
-                              controller: usernameController,
-                              style: TextStyle(color: Colors.white,
-                                  fontSize: 20),
-                              cursorColor: Colors.white,
-                              decoration: InputDecoration(
-                                floatingLabelStyle: TextStyle(
-                                    color: Color.fromARGB(255, 135, 243, 33)),
-                                labelText: 'Username',
-                                labelStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                                floatingLabelBehavior: FloatingLabelBehavior.never,
-                                focusedBorder: OutlineInputBorder(
-
-                                  // Border when focused
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 135, 243, 33),
-                                      width: 2),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  // Border when not focused
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 135, 243, 33),
-                                      width: 1),
-                                ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(255, 135, 243, 33),
+                                child: Icon(Icons.person, color: Colors.white),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextField(
-                              controller: passwordController,
-
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white,
-                              fontSize: 20),
-                              decoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior.never,
-                                floatingLabelStyle: TextStyle(
-                                    color: Color.fromARGB(255, 135, 243, 33)),
-                                labelText: 'Password',
-                                labelStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-
-                                  // Border when focused
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 135, 243, 33),
-                                      width: 2),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  // Border when not focused
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 135, 243, 33),
-                                      width: 1),
-                                ),
+                              SizedBox(
+                                height: 20,
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              width: 150,
-                              height: 50,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 135, 243, 33),
-                                    // Button background color
-                                    foregroundColor: Colors.white,
-                                    // Text color
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Rounded corners
-                                    ),
+                              TextField(
+                                controller: usernameController,
+                                style: TextStyle(color: Colors.white,
+                                    fontSize: 20),
+                                cursorColor: Colors.white,
+                                decoration: InputDecoration(
+                                  floatingLabelStyle: TextStyle(
+                                      color: Color.fromARGB(255, 135, 243, 33)),
+                                  labelText: 'Username',
+                                  labelStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
                                   ),
-                                  onPressed: () {
-                                    loginBloc.add(LoginButtonClickedEvent(
-                                        username: usernameController.text,
-                                        password: passwordController.text));
-                                  },
-                                  child: Text(
-                                    "Login",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 20,
+                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                  focusedBorder: OutlineInputBorder(
+                        
+                                    // Border when focused
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(255, 135, 243, 33),
+                                        width: 2),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    // Border when not focused
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(255, 135, 243, 33),
+                                        width: 1),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextField(
+                                controller: passwordController,
+                        
+                                cursorColor: Colors.white,
+                                style: TextStyle(color: Colors.white,
+                                fontSize: 20),
+                                decoration: InputDecoration(
+                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                  floatingLabelStyle: TextStyle(
+                                      color: Color.fromARGB(255, 135, 243, 33)),
+                                  labelText: 'Password',
+                                  labelStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                        
+                                    // Border when focused
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(255, 135, 243, 33),
+                                        width: 2),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    // Border when not focused
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide(
+                                        color: Color.fromARGB(255, 135, 243, 33),
+                                        width: 1),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(
+                                width: 150,
+                                height: 50,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 135, 243, 33),
+                                      // Button background color
+                                      foregroundColor: Colors.white,
+                                      // Text color
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            8), // Rounded corners
+                                      ),
                                     ),
-                                  )),
-                            )
-                          ])));
+                                    onPressed: () {
+                                      loginBloc.add(LoginButtonClickedEvent(
+                                          username: usernameController.text,
+                                          password: passwordController.text));
+                                    },
+                                    child: Text(
+                                      "Login",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                      ),
+                                    )),
+                              )
+                            ]),
+                      )));
             },
           ),
         ));
