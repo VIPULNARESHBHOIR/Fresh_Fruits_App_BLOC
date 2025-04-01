@@ -32,6 +32,7 @@ class _CartItemsState extends State<CartItems> {
           color: Colors.white,
         ),),
       backgroundColor: Color(0xFF316300),
+      foregroundColor: Colors.white,
     ),
     body: BlocConsumer<CartBloc, CartState>(
       bloc: cartBloc,
